@@ -1,0 +1,6 @@
+/blib/
+/src/*.o
+/Makefile
+/resources/
+.precomp/
+.tom

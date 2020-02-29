@@ -1,0 +1,64 @@
+#!/usr/bin/env perl6
+
+use Test;
+use lib 'lib';
+use Math::Libgsl::Random::Raw;
+use Math::Libgsl::Constants;
+use NativeCall;
+
+subtest 'allocation and stuctures' => {
+  my gsl_rng_type $t .= new;
+  ok nativesizeof($t) == 56, 'gsl_rng_type struct length';
+  my gsl_rng $rtest .= new;
+  ok nativesizeof($rtest) == 16, 'gsl_rng struct length';
+  my gsl_rng $r = mgsl_rng_setup(DEFAULT);
+  isa-ok $r, gsl_rng, 'gsl_rng_alloc returns a gsl_rng';
+  is gsl_rng_name($r), 'mt19937', 'default generator name';
+  ok $gsl_rng_default_seed == 0, 'default seed';
+  lives-ok { gsl_rng_free($r) }, 'deallocate structs';
+}
+
+subtest 'random values' => {
+  my gsl_rng $r = mgsl_rng_setup(DEFAULT);
+  ok gsl_rng_max($r) == 4294967295, 'default generator max value';
+  ok gsl_rng_min($r) == 0, 'default generator min value';
+  ok gsl_rng_min($r) ≤ gsl_rng_get($r) ≤ gsl_rng_max($r), 'get an uint64 random number';
+  ok 0e0 ≤ gsl_rng_uniform($r) < 1e0, 'get a num64 random number';
+  ok 0e0 < gsl_rng_uniform_pos($r) < 1e0, 'get a non-zero num64 random number';
+  ok 0 ≤ gsl_rng_uniform_int($r, 10) < 10, 'get a random integer in an interval';
+  lives-ok { gsl_rng_set($r, 42) }, 'set the seed';
+  gsl_rng_free($r);
+}
+
+subtest 'generator state and copy' => {
+  my gsl_rng $r = mgsl_rng_setup(DEFAULT);
+  isa-ok gsl_rng_state($r), Pointer[void], 'generator state';
+  ok gsl_rng_size($r) == 5000, 'generator state struct size';
+  my gsl_rng $dest = mgsl_rng_setup(DEFAULT);
+  ok gsl_rng_memcpy($dest, $r) == GSL_SUCCESS, 'copy a generator';
+  ok gsl_rng_uniform_int($r, 10) == gsl_rng_uniform_int($dest, 10), 'synchronized generators';
+  my gsl_rng $clone = gsl_rng_clone($r);
+  ok gsl_rng_uniform_int($r, 10) == gsl_rng_uniform_int($clone, 10), 'cloned generator';
+  gsl_rng_free($r);
+  gsl_rng_free($dest);
+  gsl_rng_free($clone);
+}
+
+subtest 'I/O' => {
+  my $filename = 't/random.dat';
+  LEAVE { with $filename.IO { .unlink if .e } }
+  my gsl_rng $r = mgsl_rng_setup(DEFAULT);
+  ok mgsl_rng_fwrite($filename, $r) == GSL_SUCCESS, 'can write a generator to a file';
+  my $sample = gsl_rng_get($r);
+  ok mgsl_rng_fread($filename, $r) == GSL_SUCCESS, 'can read a generator from a file';
+  ok $sample == gsl_rng_get($r), 'generator restored';
+  gsl_rng_free($r);
+}
+
+subtest 'all the possible generators' => {
+  for RngType.enums.kv -> $k, $v {
+    lives-ok { mgsl_rng_setup($v) }, "generator $k";
+  }
+}
+
+done-testing;

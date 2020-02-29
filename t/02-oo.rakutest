@@ -1,0 +1,46 @@
+#!/usr/bin/env perl6
+
+use Test;
+use lib 'lib';
+use Math::Libgsl::Random;
+use Math::Libgsl::Constants;
+
+subtest 'random values' => {
+  my Math::Libgsl::Random $r .= new;
+  is $r.name, 'mt19937', 'default generator name';
+  ok $r.max == 4294967295, 'default generator max value';
+  ok $r.min == 0, 'default generator min value';
+  ok $r.min ≤ $r.get ≤ $r.max, 'get an integer random number';
+  ok 0e0 ≤ $r.get-uniform < 1e0, 'get a floating point random number';
+  ok 0e0 < $r.get-uniform-pos < 1e0, 'get a non-zero floating point random number';
+  ok 0 ≤ $r.get-uniform-int(10) < 10, 'get a random integer in an interval';
+  lives-ok { $r.seed(42) }, 'set the seed';
+}
+
+subtest 'generator copy and clone' => {
+  my Math::Libgsl::Random $r .= new;
+  $r.seed(42);
+  my Math::Libgsl::Random $dest .= new;
+  $dest.copy($r);
+  ok $r.get == $dest.get, 'copy a generator';
+  my $clone = $r.clone;
+  ok $r.get == $clone.get, 'clone a generator';
+}
+
+subtest 'I/O' => {
+  my Math::Libgsl::Random $r .= new;
+  my $filename = 't/random.dat';
+  LEAVE { with $filename.IO { .unlink if .e } }
+  lives-ok { $r.write($filename)  }, 'can write a generator to a file';
+  my $sample = $r.get;
+  lives-ok { $r.read($filename) }, 'can read a generator from a file';
+  ok $sample == $r.get, 'generator restored';
+}
+
+subtest 'all the possible generators' => {
+  for RngType.enums.kv -> $k, $v {
+    lives-ok { Math::Libgsl::Random.new: :type($v) }, "generator $k";
+  }
+}
+
+done-testing;
