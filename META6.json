@@ -5,6 +5,7 @@
   ],
   "build-depends" : [ ],
   "depends" : [
+    "LibraryMake",
     "Math::Libgsl::Constants"
   ],
   "description" : "An interface to libgsl, the Gnu Scientific Library - Random Number Generation.",
@@ -12,9 +13,12 @@
   "name" : "Math::Libgsl::Random",
   "perl" : "6.c",
   "provides" : {
+    "Math::Libgsl::Random::Raw" : "lib/Math/Libgsl/Random/Raw.rakumod",
     "Math::Libgsl::Random" : "lib/Math/Libgsl/Random.rakumod"
   },
-  "resources" : [ ],
+  "resources" : [
+    "libraries/gslhelper"
+  ],
   "source-url" : "git://github.com/frithnanth/raku-Math-Libgsl-Random.git",
   "tags" : [
     "math",
