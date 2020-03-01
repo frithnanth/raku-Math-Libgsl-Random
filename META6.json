@@ -13,7 +13,7 @@
   "name" : "Math::Libgsl::Random",
   "perl" : "6.c",
   "provides" : {
-    "Math::Libgsl::Random::Raw" : "lib/Math/Libgsl/Random/Raw.rakumod",
+    "Math::Libgsl::Raw::Random" : "lib/Math/Libgsl/Raw/Random.rakumod",
     "Math::Libgsl::Random" : "lib/Math/Libgsl/Random.rakumod"
   },
   "resources" : [
@@ -25,5 +25,5 @@
     "nativecall"
   ],
   "test-depends" : [ ],
-  "version" : "0.0.1"
+  "version" : "0.0.2"
 }

@@ -1,5 +1,8 @@
 Revision history for Math-Libgsl-Random
 
 {{$NEXT}}
+0.0.2 2020-03-01T10:37:35+01:00
+    - Rename raw module for consistency
+
 0.0.1 2020-02-29T17:19:46+01:00
     - Initial version

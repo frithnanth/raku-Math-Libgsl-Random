@@ -3,7 +3,7 @@
 use Test;
 use lib 'lib';
 
-use-ok 'Math::Libgsl::Random::Raw';
-#use-ok 'Math::Libgsl::Random';
+use-ok 'Math::Libgsl::Raw::Random';
+use-ok 'Math::Libgsl::Random';
 
 done-testing;

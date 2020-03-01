@@ -2,7 +2,7 @@
 
 use Test;
 use lib 'lib';
-use Math::Libgsl::Random::Raw;
+use Math::Libgsl::Raw::Random;
 use Math::Libgsl::Constants;
 use NativeCall;
 
