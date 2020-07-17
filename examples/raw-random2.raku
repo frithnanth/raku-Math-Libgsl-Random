@@ -3,7 +3,7 @@
 # See "GNU Scientific Library" manual Chapter 18 Random Number Generation, Paragraph 18.13
 
 use lib 'lib';
-use Math::Libgsl::Random::Raw;
+use Math::Libgsl::Raw::Random;
 use Math::Libgsl::Constants;
 
 my gsl_rng $r = mgsl_rng_setup(DEFAULT);
