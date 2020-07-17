@@ -3,9 +3,19 @@
   "authors" : [
     "Fernando Santagata"
   ],
-  "build-depends" : [ ],
+  "build" : {
+    "makefile-variables" : {
+      "gslhelper" : {
+        "resource" : "libraries/gslhelper"
+      }
+    }
+  },
+  "build-depends" : [
+    "Distribution::Builder::MakeFromJSON"
+  ],
+  "builder" : "Distribution::Builder::MakeFromJSON",
   "depends" : [
-    "LibraryMake",
+    "Distribution::Builder::MakeFromJSON",
     "Math::Libgsl::Constants"
   ],
   "description" : "An interface to libgsl, the Gnu Scientific Library - Random Number Generation.",
