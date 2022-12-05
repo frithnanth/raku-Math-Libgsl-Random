@@ -1,7 +1,5 @@
 [![Actions Status](https://github.com/frithnanth/raku-Math-Libgsl-Random/workflows/test/badge.svg)](https://github.com/frithnanth/raku-Math-Libgsl-Random/actions)
 
-[![Build Status](https://travis-ci.org/frithnanth/raku-Math-Libgsl-Random.svg?branch=master)](https://travis-ci.org/frithnanth/raku-Math-Libgsl-Random)
-
 NAME
 ====
 
