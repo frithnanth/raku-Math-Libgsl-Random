@@ -1,6 +1,6 @@
 use v6.c;
 
-unit class Math::Libgsl::Random:ver<0.0.2>:auth<cpan:FRITH>;
+unit class Math::Libgsl::Random:ver<0.0.2>:auth<zef:FRITH>;
 
 use Math::Libgsl::Raw::Random;
 use Math::Libgsl::Exception;
@@ -56,7 +56,7 @@ Math::Libgsl::Random - An interface to libgsl, the Gnu Scientific Library - Rand
 
 =head1 SYNOPSIS
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 use Math::Libgsl::Random;
 
@@ -94,7 +94,7 @@ This method returns an Int in the range [0, n - 1].
 This method initializes the random number generator.
 This method returns B<self>, so it can be concatenated to the B<.new()> method:
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 my $r = Math::Libgsl::Random.new.seed(42);
 $r.get.say;
@@ -127,7 +127,7 @@ The generator state is also copied, so the source and destination generators del
 This method clones the current object and returns a new object.
 The generator state is also cloned, so the source and destination generators deliver the same values.
 
-=begin code :lang<perl6>
+=begin code :lang<raku>
 
 my $r = Math::Libgsl::Random.new;
 my $clone = $r.clone;
@@ -153,7 +153,7 @@ The excellent C Library manual is available here L<https://www.gnu.org/software/
 
 This module requires the libgsl library to be installed. Please follow the instructions below based on your platform:
 
-=head2 Debian Linux and Ubuntu 20.04
+=head2 Debian Linux and Ubuntu 20.04+
 
 =begin code
 sudo apt install libgsl23 libgsl-dev libgslcblas0

@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/frithnanth/raku-Math-Libgsl-Random/workflows/test/badge.svg)](https://github.com/frithnanth/raku-Math-Libgsl-Random/actions)
+
 [![Build Status](https://travis-ci.org/frithnanth/raku-Math-Libgsl-Random.svg?branch=master)](https://travis-ci.org/frithnanth/raku-Math-Libgsl-Random)
 
 NAME
@@ -8,7 +10,7 @@ Math::Libgsl::Random - An interface to libgsl, the Gnu Scientific Library - Rand
 SYNOPSIS
 ========
 
-```perl6
+```raku
 use Math::Libgsl::Random;
 
 my Math::Libgsl::Random $r .= new;
@@ -44,7 +46,7 @@ This method returns an Int in the range [0, n - 1].
 
 This method initializes the random number generator. This method returns **self**, so it can be concatenated to the **.new()** method:
 
-```perl6
+```raku
 my $r = Math::Libgsl::Random.new.seed(42);
 $r.get.say;
 
@@ -73,7 +75,7 @@ This method copies the source generator **$src** into the current one and return
 
 This method clones the current object and returns a new object. The generator state is also cloned, so the source and destination generators deliver the same values.
 
-```perl6
+```raku
 my $r = Math::Libgsl::Random.new;
 my $clone = $r.clone;
 ```
@@ -96,8 +98,8 @@ Prerequisites
 
 This module requires the libgsl library to be installed. Please follow the instructions below based on your platform:
 
-Debian Linux and Ubuntu 20.04
-------------
+Debian Linux and Ubuntu 20.04+
+------------------------------
 
     sudo apt install libgsl23 libgsl-dev libgslcblas0
 

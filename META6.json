@@ -1,39 +1,40 @@
 {
-  "auth" : "cpan:FRITH",
-  "authors" : [
+  "auth": "zef:FRITH",
+  "authors": [
     "Fernando Santagata"
   ],
-  "build" : {
-    "makefile-variables" : {
-      "gslhelper" : {
-        "resource" : "libraries/gslhelper"
+  "build": {
+    "makefile-variables": {
+      "gslhelper": {
+        "resource": "libraries/gslhelper"
       }
     }
   },
-  "build-depends" : [
+  "build-depends": [
     "Distribution::Builder::MakeFromJSON"
   ],
-  "builder" : "Distribution::Builder::MakeFromJSON",
-  "depends" : [
+  "builder": "Distribution::Builder::MakeFromJSON",
+  "depends": [
     "Distribution::Builder::MakeFromJSON",
     "Math::Libgsl::Constants"
   ],
-  "description" : "An interface to libgsl, the Gnu Scientific Library - Random Number Generation.",
-  "license" : "Artistic-2.0",
-  "name" : "Math::Libgsl::Random",
-  "perl" : "6.c",
-  "provides" : {
-    "Math::Libgsl::Raw::Random" : "lib/Math/Libgsl/Raw/Random.rakumod",
-    "Math::Libgsl::Random" : "lib/Math/Libgsl/Random.rakumod"
+  "description": "An interface to libgsl, the Gnu Scientific Library - Random Number Generation.",
+  "license": "Artistic-2.0",
+  "name": "Math::Libgsl::Random",
+  "perl": "6.c",
+  "provides": {
+    "Math::Libgsl::Random": "lib/Math/Libgsl/Random.rakumod",
+    "Math::Libgsl::Raw::Random": "lib/Math/Libgsl/Raw/Random.rakumod"
   },
-  "resources" : [
+  "resources": [
     "libraries/gslhelper"
   ],
-  "source-url" : "git://github.com/frithnanth/raku-Math-Libgsl-Random.git",
-  "tags" : [
+  "source-url": "git://github.com/frithnanth/raku-Math-Libgsl-Random.git",
+  "tags": [
     "math",
     "nativecall"
   ],
-  "test-depends" : [ ],
-  "version" : "0.0.2"
+  "test-depends": [
+  ],
+  "version": "0.0.2"
 }
