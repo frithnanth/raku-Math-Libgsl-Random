@@ -1,6 +1,6 @@
 use v6.c;
 
-unit class Math::Libgsl::Random:ver<0.0.2>:auth<zef:FRITH>;
+unit class Math::Libgsl::Random:ver<0.0.3>:auth<zef:FRITH>;
 
 use Math::Libgsl::Raw::Random;
 use Math::Libgsl::Exception;
