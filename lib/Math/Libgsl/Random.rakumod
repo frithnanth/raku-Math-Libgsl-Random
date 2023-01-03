@@ -30,19 +30,19 @@ method max(--> Int) { gsl_rng_max($!r) }
 
 method copy(Math::Libgsl::Random $src) {
   my $ret = gsl_rng_memcpy($!r, $src.r);
-  fail X::Libgsl.new: errno => $ret, error => "Can't copy the generator" if $ret ≠ GSL_SUCCESS;
+  X::Libgsl.new(errno => $ret, error => "Can't copy the generator").throw if $ret ≠ GSL_SUCCESS;
   self
 }
 method clone(--> Math::Libgsl::Random) { Math::Libgsl::Random.new: r => gsl_rng_clone($!r) }
 
 method write(Str $filename!) {
   my $ret = mgsl_rng_fwrite($filename, $!r);
-  fail X::Libgsl.new: errno => $ret, error => "Can't write the generator" if $ret ≠ GSL_SUCCESS;
+  X::Libgsl.new(errno => $ret, error => "Can't write the generator").throw if $ret ≠ GSL_SUCCESS;
   self
 }
 method read(Str $filename!) {
   my $ret = mgsl_rng_fread($filename, $!r);
-  fail X::Libgsl.new: errno => $ret, error => "Can't read the generator" if $ret ≠ GSL_SUCCESS;
+  X::Libgsl.new(errno => $ret, error => "Can't read the generator").throw if $ret ≠ GSL_SUCCESS;
   self
 }
 
@@ -72,6 +72,8 @@ Math::Libgsl::Random is an interface to the Random Number Generation routines of
 =head3 new(Int :$type?)
 
 The constructor allows one optional parameter, the random number generator type. One can find an enum listing all the generator types in the Math::Libgsl::Constants module.
+
+All the following methods I<throw> on error if they return B<self>, otherwise they I<fail> on error.
 
 =head3 get(--> Int)
 

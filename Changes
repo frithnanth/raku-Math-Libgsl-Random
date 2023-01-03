@@ -1,6 +1,7 @@
 Revision history for Math-Libgsl-Random
 
 {{$NEXT}}
+    - Methods that return self throw on error, instead of failing
 
 0.0.3  2022-12-05T12:34:17+01:00
     - Use zef ecosystem

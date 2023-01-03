@@ -26,6 +26,8 @@ Math::Libgsl::Random is an interface to the Random Number Generation routines of
 
 The constructor allows one optional parameter, the random number generator type. One can find an enum listing all the generator types in the Math::Libgsl::Constants module.
 
+All the following methods *throw* on error if they return **self**, otherwise they *fail* on error.
+
 ### get(--> Int)
 
 Returns the next random number as an Int.
