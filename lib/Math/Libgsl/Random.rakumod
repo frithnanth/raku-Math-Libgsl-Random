@@ -48,8 +48,6 @@ method read(Str $filename!) {
 
 =begin pod
 
-[![Build Status](https://travis-ci.org/frithnanth/raku-Math-Libgsl-Random.svg?branch=master)](https://travis-ci.org/frithnanth/raku-Math-Libgsl-Random)
-
 =head1 NAME
 
 Math::Libgsl::Random - An interface to libgsl, the Gnu Scientific Library - Random Number Generation.
